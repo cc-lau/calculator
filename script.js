@@ -1,3 +1,5 @@
+/*
+
 //User input num1 & num2
 let n1 = prompt("Enter num 1: ")
 let operator = prompt("Enter operator: ")
@@ -5,6 +7,8 @@ let n2 = prompt("Enter num 2: ")
 //Convert String input to Int
 let num1 = parseInt(n1);
 let num2 = parseInt(n2);
+
+*/
 
 //Addition Function
 function add (num1, num2) {
