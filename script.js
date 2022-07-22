@@ -1,37 +1,64 @@
-/*
+//Button Variables
+const input = document.querySelector('.screen')
+const numButton = document.querySelectorAll('.num')
+const opButton = document.querySelectorAll('.operator')
+const clearButton = document.querySelector('.clear')
+const deleteButton = document.querySelector('.delete')
 
-//User input num1 & num2
-let n1 = prompt("Enter num 1: ")
-let operator = prompt("Enter operator: ")
-let n2 = prompt("Enter num 2: ")
-//Convert String input to Int
-let num1 = parseInt(n1);
-let num2 = parseInt(n2);
+//Display num on screen
+numButton.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const value = e.target.dataset.value
+        input.textContent += value
+    })
+})
 
+opButton.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const operator = e.target.dataset.value
+        input.textContent += operator
+    })
+})
+
+/* CLEAR AND DELETE BUTTON ----- TO FIX
+clearButton.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const value = e.target.dataset.value
+        input.textContent += value
+    })
+})
+
+deleteButton.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const value = e.target.dataset.value
+        input.textContent += value
+    })
+})
 */
 
+/**Arithmetic Functions**/
 //Addition Function
 function add (num1, num2) {
     addValue = (num1 + num2)
-    return addValue;
+    input.textContent = addValue;
 }
 
 //Subtraction function
 function subtract (num1, num2) {
     subtractValue = (num1 - num2)
-    return subtractValue;
+    input.textContent = subtractValue;
 }
 
 //Multiplication Function
 function multiply (num1, num2) {
     multiplyValue = (num1 * num2);
-    return multiplyValue;
+    input.textContent = multiplyValue;
 }
 
 //Division Function
 function divide (num1, num2) {
     divideValue = (num1 / num2);
-    return divideValue;
+    input.textContent = divideValue;
 }
 
 //Operate function to check operator and call correct function
@@ -52,5 +79,4 @@ function operate(operator, num1, num2) {
     }
 
 }
-
-operate(operator, num1, num2);
+//operate(operator, num1, num2);
