@@ -97,25 +97,33 @@ function operate() {
 //Addition Function
 function add() {
     previousNum = previousNum + currentNum;
+    previousNum = roundNumber(previousNum);
     input.textContent = previousNum;
 }
 
 //Subtraction function
 function subtract() {
     previousNum = previousNum - currentNum;
+    previousNum = roundNumber(previousNum);
     input.textContent = previousNum;
 }
 
 //Multiplication Function
 function multiply() {
     previousNum = previousNum * currentNum;
+    previousNum = roundNumber(previousNum);
     input.textContent = previousNum;
 }
 
 //Division Function
 function divide() {
     previousNum = previousNum / currentNum;
+    previousNum = roundNumber(previousNum);
     input.textContent = previousNum;
+}
+
+function roundNumber (num) {
+    return Math.round(num * 100) / 100;
 }
 
 
