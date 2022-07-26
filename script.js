@@ -9,8 +9,7 @@ let currentNum = '';
 let previousNum = '';
 let operator = '';
 
-
-//Display num on screen
+//Display number on screen
 numButton.forEach(button => {
     button.addEventListener('click', (e) => {
         handleNumber(e.target.dataset.value);
@@ -20,8 +19,8 @@ numButton.forEach(button => {
 //Current number is equal to currentNum
 function handleNumber(number) {
     if (currentNum.length <= 12) {
-    currentNum += number;
-    input.textContent = currentNum;
+        currentNum += number;
+        input.textContent = currentNum;
     }
 }
 
@@ -29,7 +28,7 @@ function handleNumber(number) {
 clearButton.addEventListener('click', () => {
     input.textContent = '';
     currentNum = '';
-    previousNum = ''; 
+    previousNum = '';
 });
 
 //Get operator button data value
@@ -40,21 +39,38 @@ opButton.forEach(button => {
 })
 
 //Set value to previous num when operator is selected
-function handleOperator (op) {
-    operator = op;
-    previousNum = currentNum;
-    currentNum = "";
+function handleOperator(op) {
+    if (previousNum === '') {
+        previousNum = currentNum;
+        operatorCheck(op);
+    } else if (currentNum === '') {
+        operatorCheck(op);
+    } else {
+        operate();
+        operator = op;
+    }
+}
+
+function operatorCheck(text) {
+    operator = text;
+    currentNum = '';
+}
+
+function test() {
+    if (currentNum != "" && previousNum != "") {
+        operate();
+    }
 }
 
 //Compute numbers if equal button is pressed
 equalButton.addEventListener('click', () => {
-    if(currentNum != "" && previousNum != "") {
-        operate(operator, currentNum, previousNum);
+    if (currentNum != "" && previousNum != "") {
+        operate();
     }
 });
 
 //Operate function to check operator and call correct function
-function operate(operator, currentNum, previousNum) {
+function operate() {
     currentNum = Number(currentNum);
     previousNum = Number(previousNum);
     switch (operator) {
@@ -63,38 +79,41 @@ function operate(operator, currentNum, previousNum) {
             break;
         case "-":
             subtract(currentNum, previousNum);
-            break;       
+            break;
         case "*":
             multiply(currentNum, previousNum);
             break;
         case "/":
             divide(currentNum, previousNum);
             break;
-    }
 
+    }
+    operator = '';
+    currentNum = ''
+    previousNum = previousNum.toString();
 }
 
 /**Arithmetic Functions**/
 //Addition Function
-function add (currentNum, previousNum) {
+function add() {
     previousNum = previousNum + currentNum;
     input.textContent = previousNum;
 }
 
 //Subtraction function
-function subtract (currentNum, previousNum) {
+function subtract() {
     previousNum = previousNum - currentNum;
     input.textContent = previousNum;
 }
 
 //Multiplication Function
-function multiply (currentNum, previousNum) {
+function multiply() {
     previousNum = previousNum * currentNum;
     input.textContent = previousNum;
 }
 
 //Division Function
-function divide (currentNum, previousNum) {
+function divide() {
     previousNum = previousNum / currentNum;
     input.textContent = previousNum;
 }
@@ -107,4 +126,18 @@ deleteButton.forEach(button => {
         input.textContent += value
     })
 })
+
+
+
+
+if (operator = '+') {
+        add(currentNum, previousNum);
+}
+        else if (operator = '-') {
+        subtract(currentNum, previousNum);
+    }   else if (operator = '*') {    
+        multiply(currentNum, previousNum);
+    }   else if (operator = '/') {
+        divide(currentNum, previousNum);
+    }
 */
