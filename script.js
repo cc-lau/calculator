@@ -25,19 +25,28 @@ function handleNumber(number) {
     }
 }
 
-//
+//Reset calculator when clear button is pressed
+clearButton.addEventListener('click', () => {
+    input.textContent = '';
+    currentNum = '';
+    previousNum = ''; 
+});
+
+//Get operator button data value
 opButton.forEach(button => {
     button.addEventListener('click', (e) => {
         handleOperator(e.target.dataset.value)
     })
 })
 
+//Set value to previous num when operator is selected
 function handleOperator (op) {
     operator = op;
     previousNum = currentNum;
     currentNum = "";
 }
 
+//Compute numbers if equal button is pressed
 equalButton.addEventListener('click', () => {
     if(currentNum != "" && previousNum != "") {
         operate(operator, currentNum, previousNum);
@@ -91,14 +100,7 @@ function divide (currentNum, previousNum) {
 }
 
 
-/* CLEAR AND DELETE BUTTON ----- TO FIX
-clearButton.forEach(button => {
-    button.addEventListener('click', (e) => {
-        const value = e.target.dataset.value
-        input.textContent += value
-    })
-})
-
+/* DELETE BUTTON ----- TO FIX
 deleteButton.forEach(button => {
     button.addEventListener('click', (e) => {
         const value = e.target.dataset.value
