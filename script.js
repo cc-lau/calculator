@@ -5,6 +5,7 @@ const opButton = document.querySelectorAll('.operator')
 const equalButton = document.querySelector('.equal')
 const clearButton = document.querySelector('.clear')
 const deleteButton = document.querySelector('.delete')
+const decimalButton = document.querySelector('.decimal')
 let currentNum = '';
 let previousNum = '';
 let operator = '';
@@ -29,12 +30,36 @@ clearButton.addEventListener('click', () => {
     resetCalculator();
 });
 
+//Function to reset calculator
+function resetCalculator() {
+    input.textContent = '';
+    currentNum = '';
+    previousNum = '';
+}
+
+//delete calculator when clear button is pressed
+numButton.forEach(button => {
+    button.addEventListener('click', (e) => {
+        deleteNumber(e.target.dataset.value);
+    })
+})
+
+//fff
+function deleteNumber() {
+        currentNum.slice(0, str.length - 1);
+        input.textContent = currentNum;
+}
+
 //Get operator button data value
 opButton.forEach(button => {
     button.addEventListener('click', (e) => {
         handleOperator(e.target.dataset.value)
     })
 })
+
+decimalButton.addEventListener('click', () => {
+    addDecimal();
+});
 
 //Set value to previous num when operator is selected
 function handleOperator(op) {
@@ -124,31 +149,11 @@ function roundNumber (num) {
     return Math.round(num * 100) / 100;
 }
 
-function resetCalculator() {
-    input.textContent = '';
-    currentNum = '';
-    previousNum = '';
-}
-
-/* DELETE BUTTON ----- TO FIX
-deleteButton.forEach(button => {
-    button.addEventListener('click', (e) => {
-        const value = e.target.dataset.value
-        input.textContent += value
-    })
-})
-
-
-
-
-if (operator = '+') {
-        add(currentNum, previousNum);
-}
-        else if (operator = '-') {
-        subtract(currentNum, previousNum);
-    }   else if (operator = '*') {    
-        multiply(currentNum, previousNum);
-    }   else if (operator = '/') {
-        divide(currentNum, previousNum);
+function addDecimal() {
+    if (!currentNum.includes('.')) {
+        currentNum += '.';
+        input.textContent = currentNum;
     }
-*/
+}
+
+
