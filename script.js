@@ -4,7 +4,6 @@ const numButton = document.querySelectorAll('.num')
 const opButton = document.querySelectorAll('.operator')
 const equalButton = document.querySelector('.equal')
 const clearButton = document.querySelector('.clear')
-const deleteButton = document.querySelector('.delete')
 const decimalButton = document.querySelector('.decimal')
 let currentNum = '';
 let previousNum = '';
@@ -35,19 +34,6 @@ function resetCalculator() {
     input.textContent = '';
     currentNum = '';
     previousNum = '';
-}
-
-//delete calculator when clear button is pressed
-numButton.forEach(button => {
-    button.addEventListener('click', (e) => {
-        deleteNumber(e.target.dataset.value);
-    })
-})
-
-//fff
-function deleteNumber() {
-        currentNum.slice(0, str.length - 1);
-        input.textContent = currentNum;
 }
 
 //Get operator button data value
@@ -102,11 +88,11 @@ function operate() {
             multiply(currentNum, previousNum);
             break;
         case "/":
-            if(currentNum === 0) {
+            if (currentNum === 0) {
                 input.textContent = "ERROR"
             } else {
-            divide(currentNum, previousNum);
-        }
+                divide(currentNum, previousNum);
+            }
             break;
     }
     operator = '';
@@ -138,22 +124,21 @@ function multiply() {
 
 //Division Function
 function divide() {
-    
+
     previousNum = previousNum / currentNum;
     previousNum = roundNumber(previousNum);
     input.textContent = previousNum;
-    }
+}
 
 //Round number to 2 decimal places
-function roundNumber (num) {
+function roundNumber(num) {
     return Math.round(num * 100) / 100;
 }
 
+//Add decimal function
 function addDecimal() {
     if (!currentNum.includes('.')) {
         currentNum += '.';
         input.textContent = currentNum;
     }
 }
-
-
