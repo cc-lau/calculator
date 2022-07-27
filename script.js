@@ -26,9 +26,7 @@ function handleNumber(number) {
 
 //Reset calculator when clear button is pressed
 clearButton.addEventListener('click', () => {
-    input.textContent = '';
-    currentNum = '';
-    previousNum = '';
+    resetCalculator();
 });
 
 //Get operator button data value
@@ -51,15 +49,10 @@ function handleOperator(op) {
     }
 }
 
+//Check operator, set currentNum to blank
 function operatorCheck(text) {
     operator = text;
     currentNum = '';
-}
-
-function test() {
-    if (currentNum != "" && previousNum != "") {
-        operate();
-    }
 }
 
 //Compute numbers if equal button is pressed
@@ -84,9 +77,12 @@ function operate() {
             multiply(currentNum, previousNum);
             break;
         case "/":
+            if(currentNum === 0) {
+                input.textContent = "ERROR"
+            } else {
             divide(currentNum, previousNum);
+        }
             break;
-
     }
     operator = '';
     currentNum = ''
@@ -117,15 +113,22 @@ function multiply() {
 
 //Division Function
 function divide() {
+    
     previousNum = previousNum / currentNum;
     previousNum = roundNumber(previousNum);
     input.textContent = previousNum;
-}
+    }
 
+//Round number to 2 decimal places
 function roundNumber (num) {
     return Math.round(num * 100) / 100;
 }
 
+function resetCalculator() {
+    input.textContent = '';
+    currentNum = '';
+    previousNum = '';
+}
 
 /* DELETE BUTTON ----- TO FIX
 deleteButton.forEach(button => {
